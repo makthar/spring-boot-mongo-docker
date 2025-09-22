@@ -1,1 +1,24 @@
+name: nodeJS workflow
 
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+	steps:
+	  - name: check out the code
+	    uses: actions/ceckout@v3
+		
+	  - name: set up the node.JS
+	    uses: actions/setup-node@v4
+		with:
+		  node-version: '20'
+	  - name: Install the dependencies
+	    run: npm install
+		
+	  - name: Run test
+	    run: npm test
